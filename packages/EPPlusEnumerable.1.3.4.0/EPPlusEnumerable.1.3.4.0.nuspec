@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EPPlusEnumerable</id>
+    <version>1.3.4.0</version>
+    <title>EPPlusEnumerable</title>
+    <authors>Brad Westness</authors>
+    <owners>Brad Westness</owners>
+    <licenseUrl>https://github.com/bradwestness/EPPlusEnumerable/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/bradwestness/EPPlusEnumerable</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Easily create multi-worksheet Excel documents from any .NET object collection.</description>
+    <releaseNotes>Fix a bug when applying table formatting to the generated worksheets</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>EPPlus Excel Spreadsheet Enumerable</tags>
+    <dependencies>
+      <dependency id="EPPlus" version="4.0.4" />
+    </dependencies>
+  </metadata>
+</package>

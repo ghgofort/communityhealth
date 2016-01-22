@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PagedList.EntityFramework</id>
+    <version>1.0.1</version>
+    <title>PagedList.EntityFramework</title>
+    <authors>Nick Strupat</authors>
+    <owners>Nick Strupat</owners>
+    <projectUrl>https://github.com/NickStrupat/PagedList.EntityFramework</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An async/await enabled extension for using EntityFramework IQueryables with https://github.com/TroyGoode/PagedList</description>
+    <dependencies>
+      <dependency id="EntityFramework" version="6.1.1" />
+      <dependency id="PagedList" version="1.17.0.0" />
+    </dependencies>
+  </metadata>
+</package>
