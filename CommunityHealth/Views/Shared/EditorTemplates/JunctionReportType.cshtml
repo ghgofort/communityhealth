@@ -1,0 +1,13 @@
+﻿
+@model CommunityHealth.Models.JunctionReportType
+<div class="typeList removeMe" id="@Model.IndexID">
+    @using (Html.BeginCollectionItem("junctionReportTypes"))
+    {
+        <div>
+            @Html.HiddenFor(model => model.IndexID)
+            @Html.DropDownListFor(model => model.TypeID, ViewBag.TypID as SelectList, "--SELECT--", new { htmlAttributes = new { @class = "ddlTyp", onchange = @"alert('Hi');" } })
+            @Html.ValidationMessageFor(model => model.TypeID)
+            <a href="#" class="deleteLink">delete</a>
+        </div>
+    }
+</div>

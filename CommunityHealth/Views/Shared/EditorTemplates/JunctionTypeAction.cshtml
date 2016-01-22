@@ -1,0 +1,27 @@
+﻿@model CommunityHealth.Models.JunctionTypeAction
+           
+<div class="typeList removeMe" id="@Model.IndexID">
+    @using (Html.BeginCollectionItem("junctionTypeActions"))
+    {
+        @Html.HiddenFor(model => model.ActionID)
+        @Html.HiddenFor(model => model.IndexID)
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Type:</p>
+                            @Html.DropDownListFor(model => model.TypeID, ViewBag.TyID as SelectList, "--SELECT--", new { htmlAttributes = new { @class = "control-form" } })
+                            @Html.ValidationMessageFor(model => model.TypeID)
+                        </td>
+                        <td>
+                            <p>Participants:</p>
+                            @Html.EditorFor(model => model.Participants)
+                        </td>
+                        <td><a href="#" class="deleteLink">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

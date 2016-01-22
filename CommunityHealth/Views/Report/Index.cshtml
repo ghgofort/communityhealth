@@ -1,0 +1,160 @@
+﻿@model IEnumerable<CommunityHealth.Models.ViewModels.ReportBuilderViewModel>
+
+@using CommunityHealth.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+
+@foreach (var item in Model) {
+    @Html.HiddenFor(modelItem => item.report.RecordVersion)
+    <tr>
+        <td>
+            <h4>Report Name:</h4>
+            <div>
+                @Html.DisplayFor(modelItem => item.report.ReportName)
+            </div>
+        </td>
+        @if (item.report.SortByDate)
+        {
+            <td>
+                <h4>Date Range:</h4>
+                <div>Begin:@Html.DisplayFor(modelItem => item.report.BeginReportDate)
+                End:@Html.DisplayFor(modelItem => item.report.EndReportDate)</div>
+            </td>
+        }
+        @if(item.report.SortByDuration)
+        {
+            <td>
+                <h4>Duration Range:</h4>
+                <div>
+                    Min:@Html.DisplayFor(modelItem => item.report.LowDuration)
+                    Max:@Html.DisplayFor(modelItem => item.report.HighDuration)
+                </div>
+            </td>
+        }
+        @if(item.report.SortByLocation)
+        {   
+            <td>
+                <h4>Locations:</h4>
+                <div>
+                    @foreach(JunctionReportLocation jrl in item.junctionReportLocations)
+                    {                    
+                        @Html.DisplayFor(jrlItem => jrl.Location.LocationName)<br/>
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SortByProgram)
+        {
+            <td>
+                <h4>Programs:</h4>
+                <div>
+                    @foreach(JunctionReportProgram jrp in item.junctionReportPrograms)
+                    {
+                        @Html.DisplayFor(jrpItem => jrp.Program.ProgramName)<br/>
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SortByDepartment)
+        {
+            <td>
+                <h4>Departments:</h4>
+                <div>
+                    @foreach(JunctionReportDepartment jrd in item.junctionReportDepartments)
+                    {
+                        @Html.DisplayFor(jrpItem => jrd.Department.DepartmentName)<br />
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SortByRole)
+        {
+            <td>
+                <h4>Roles:</h4>
+                <div>
+                    @foreach(JunctionReportRole jrr in item.junctionReportRoles)
+                    {
+                        @Html.DisplayFor(jrpItem => jrr.Role.RoleName)<br />
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SortByType)
+        {
+            <td>
+                <h4>Types:</h4>
+                <div>
+                    @foreach(JunctionReportType jrt in item.junctionReportTypes)
+                    {
+                        @Html.DisplayFor(jrpItem => jrt.ActivityType.TypeName)<br />
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SortByPopulation)
+        {
+            <td>
+                <h4>Populations:</h4>
+                <div>
+                    @foreach(JunctionReportPopulation jrp in item.junctionReportPopulations)
+                    {
+                        @Html.DisplayFor(jrpItem => jrp.TargetPopulation.PopulationName)<br />
+                    }
+                </div>
+            </td>
+        }
+        @if(item.report.SearchValue!=""&&item.report.SearchValue!=null)
+        {
+            <td>
+                <h4>Search Value:</h4>
+                <div>
+                    @Html.DisplayFor(modelItem => item.report.SearchValue)
+                </div>
+            </td>
+        }
+        <td>
+            <h4>Search Fields:</h4>
+            <ul>
+                @if(item.report.SearchBreifDescription)
+                {
+                    <li>Breif Description</li>
+                }
+                @if(item.report.SearchDepartment)
+                {
+                    <li>Department</li>
+                }
+                @if(item.report.SearchNotes)
+                {
+                    <li>Notes</li>
+                }
+                @if(item.report.SortAddedBy)
+                {
+                    <li>Added By</li>
+                }
+            </ul>
+        </td>
+        <td>
+            Report Created By:
+            @Html.DisplayFor(modelItem => item.report.ReportBy)
+        </td>
+        <td>
+            Date Report last Run:
+            @Html.DisplayFor(modelItem => item.report.ReportDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.report.ReportID }) |
+            @Html.ActionLink("Run Report", "RunReport", new { id=item.report.ReportID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.report.ReportID })
+        </td>
+    </tr>
+}
+</table>

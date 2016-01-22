@@ -1,0 +1,13 @@
+﻿@model CommunityHealth.Models.JunctionReportProgram
+
+<div class="programList removeMe" id="@Model.IndexID">
+    @using (Html.BeginCollectionItem("junctionReportPrograms"))
+    {
+        <div>
+            @Html.HiddenFor(model => model.IndexID)
+            @Html.DropDownListFor(model => model.ProgramID, ViewBag.ProID as SelectList, "--SELECT--", new { htmlAttributes = new { @class = "ddlPro" } })
+            @Html.ValidationMessageFor(model => model.ProgramID)
+            <a href="#" class="deleteLink">delete</a>
+        </div>
+    }
+</div>

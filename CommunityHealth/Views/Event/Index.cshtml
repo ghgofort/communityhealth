@@ -1,0 +1,106 @@
+﻿@model PagedList.IPagedList<CommunityHealth.Models.ViewModels.ActivityViewModel>
+@using PagedList.Mvc;
+@using PagedList.EntityFramework;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Activity List";
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Event", FormMethod.Get))
+{
+    @Html.TextBox("SearchKey", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" />
+}
+<table id="tblItems" class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.DateSort, currentFilter=ViewBag.CurrentFilter})
+            @*@Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.StartDate)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.BreifDescription)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Location.LocationName)</th>
+        <th>@Html.DisplayName("Department")</th>
+        <th>@Html.DisplayName("Activity Type")</th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Notes)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.AddedBy)*@
+            @Html.ActionLink("Added By", "Index", new { sortOrder = ViewBag.AddedBySort, currentFilter=ViewBag.CurrentFilter})
+
+        </th>
+        <th>
+            @Html.DisplayName("Duration")
+        </th>
+        <th>
+            @*@Html.ActionLink("Program", "Index", new { sortOrder = ViewBag.ProgramSort, currentFilter = ViewBag.CurrentFilter })*@
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Program.ProgramName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr id="rowItems">
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.BreifDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Location.LocationName)
+            </td>
+            <td>
+                @foreach(var dep in item.junctionDepartmentActions)
+                {
+                    @Html.DisplayFor(modelItem => dep.Department.DepartmentName)
+                }
+            </td>
+            <td>
+                @foreach (var type in item.junctionTypeActions)
+                {
+                    @Html.DisplayFor(modelItem => type.ActivityType.TypeName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.AddedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Program.ProgramName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.communityAction.ActionID }) |
+                @if (User.IsInRole(@"LAVA\CommunityEventAdmin")){ @Html.ActionLink("Delete", "Delete", new { id = item.communityAction.ActionID })}|
+                @Html.ActionLink("Details", "Details", new { id = item.communityAction.ActionID })
+            </td>
+        </tr>
+    }
+
+</table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

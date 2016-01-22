@@ -1,0 +1,14 @@
+﻿
+@model CommunityHealth.Models.JunctionReportRole
+
+<div class="roleList removeMe" id="@Model.IndexID">
+    @using (Html.BeginCollectionItem("junctionReportRoles"))
+    {
+        <div>
+            @Html.HiddenFor(model => model.IndexID)
+            @Html.DropDownListFor(model => model.RoleID, ViewBag.RolID as SelectList, "--SELECT--", new { htmlAttributes = new { @class = "ddlRol" } })
+            @Html.ValidationMessageFor(model => model.RoleID)
+            <a href="#" class="deleteLink">delete</a>
+        </div>
+    }
+</div>

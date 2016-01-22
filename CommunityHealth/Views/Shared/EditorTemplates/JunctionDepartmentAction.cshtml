@@ -1,0 +1,16 @@
+﻿@model CommunityHealth.Models.JunctionDepartmentAction
+
+<div class="departmentList removeMe" id="@Model.IndexID">
+    @using (Html.BeginCollectionItem("junctionDepartmentActions"))
+    {
+        <div>
+            @Html.HiddenFor(model => model.IndexID)
+            @Html.DropDownListFor(model => model.DepartmentID, ViewBag.DepID as SelectList, "--SELECT--", new { htmlAttributes = new { @class = "ddlDept", onchange = @"alert('Hi');" } })
+            @Html.ValidationMessageFor(model => model.DepartmentID)
+            <div style="display:none;">
+                @Html.EditorFor(model => model.SubDepartment, "SubDepartment", new { @class = "control-label col-md-2 " })
+            </div>
+            <a href="#" class="deleteLink">delete</a>
+        </div>
+    }
+</div>

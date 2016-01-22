@@ -1,0 +1,311 @@
+﻿@model CommunityHealth.Models.ViewModels.ReportBuilderViewModel
+
+@Scripts.Render("~/content/css")
+@Scripts.Render("~/bundles/reports")
+
+<h2>Create Report</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.report.ReportBy)
+        @Html.HiddenFor(model => model.report.ReportDate)
+        @Html.HiddenFor(model => model.report.ReportID)
+        <script type="text/javascript">
+var MyAppUrlSettings = {
+    addLocationUrl: '@Url.Action("CreateNewLocation","Report")',
+    addProgramUrl: '@Url.Action("CreateNewProgram", "Report")',
+    addTypeUrl: '@Url.Action("CreateNewType", "Report")',
+    addPopulationUrl: '@Url.Action("CreateNewPopulation", "Report")',
+    addDepartmentUrl: '@Url.Action("CreateNewDepartment", "Report")',
+    addRoleUrl: '@Url.Action("CreateNewRole", "Report")'
+}</script>
+        <div class="col-md-9">
+            <h4>Filter Report Results...</h4>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.ReportName, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.ReportName, new { @class = "control-label col-md-9", id = "lblName" })
+                        @Html.ValidationMessageFor(model => model.report.ReportName)
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByDate, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByDate, new { id = "chkFilterDate" })
+                        @Html.ValidationMessageFor(model => model.report.SortByDate)
+                    </div>
+                </div>
+                <div class="col-md-9 clsNotVisible" id="divDates">
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.report.BeginReportDate, new { @class = "control-label col-md-6", id = "lblSDate" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.beginningReportDate, new { id = "beginReportDate" })
+                            @Html.ValidationMessageFor(model => model.beginningReportDate)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.report.EndReportDate, new { @class = "control-label col-md-6", id = "lblEDate" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.endReportDate, new { id = "endReportDate" })
+                            @Html.ValidationMessageFor(model => model.endReportDate)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByDuration, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByDuration, new { id = "chkFilterDuration" })
+                        @Html.ValidationMessageFor(model => model.report.SortByDuration)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divDurations">
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.report.LowDuration, new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.report.LowDuration)
+                            @Html.ValidationMessageFor(model => model.report.LowDuration)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.report.HighDuration, new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.report.HighDuration)
+                            @Html.ValidationMessageFor(model => model.report.HighDuration)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByLocation, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByLocation, new { id = "chkFilterLocation" })
+                        @Html.ValidationMessageFor(model => model.report.SortByLocation)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterLocations">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportLocations, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divLocations">
+                            @Html.EditorFor(model => model.junctionReportLocations)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another location", "CreateNewLocation", new AjaxOptions
+                        {
+                            UpdateTargetId = "divLocations",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByProgram, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByProgram, new { id = "chkFilterProgram" })
+                        @Html.ValidationMessageFor(model => model.report.SortByProgram)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterPrograms">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportPrograms, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divPrograms">
+                            @Html.EditorFor(model => model.junctionReportPrograms)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another program", "CreateNewProgram", new AjaxOptions
+                        {
+                            UpdateTargetId = "divPrograms",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByDepartment, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByDepartment, new { id = "chkFilterDepartment" })
+                        @Html.ValidationMessageFor(model => model.report.SortByDepartment)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterDepartments">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportDepartments, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divDepartments">
+                            @Html.EditorFor(model => model.junctionReportDepartments)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another department", "CreateNewDepartment", new AjaxOptions
+                        {
+                            UpdateTargetId = "divDepartments",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByPopulation, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByPopulation, new { id = "chkFilterPopulation" })
+                        @Html.ValidationMessageFor(model => model.report.SortByPopulation)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterPopulations">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportPopulations, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divPopulations">
+                            @Html.EditorFor(model => model.junctionReportPopulations)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another target population", "CreateNewPopulation", new AjaxOptions
+                        {
+                            UpdateTargetId = "divPopulations",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByRole, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByRole, new { id = "chkFilterRole" })
+                        @Html.ValidationMessageFor(model => model.report.SortByRole)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterRoles">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportRoles, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divRoles">
+                            @Html.EditorFor(model => model.junctionReportRoles)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another role", "CreateNewRole", new AjaxOptions
+                        {
+                            UpdateTargetId = "divRoles",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.report.SortByType, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.CheckBoxFor(model => model.report.SortByType, new { id = "chkFilterType" })
+                        @Html.ValidationMessageFor(model => model.report.SortByType)
+                    </div>
+                </div>
+                <div class="clsNotVisible col-md-9" id="divFilterTypes">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.junctionReportTypes, new { @class = "control-label col-md-4" })
+                        <div class="col-md-8 editableList" id="divTypes">
+                            @Html.EditorFor(model => model.junctionReportTypes)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            @Ajax.ActionLink("+Add another type", "CreateNewType", new AjaxOptions
+                        {
+                            UpdateTargetId = "divTypes",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            @*
+                <h4>Create Report Using Search...</h4>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.report.SearchValue, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.SearchValue)
+                        @Html.ValidationMessageFor(model => model.report.SearchValue)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.report.SearchBreifDescription, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.SearchBreifDescription)
+                        @Html.ValidationMessageFor(model => model.report.SearchBreifDescription)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.report.SearchDepartment, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.SearchDepartment)
+                        @Html.ValidationMessageFor(model => model.report.SearchDepartment)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.report.SearchNotes, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.SearchNotes)
+                        @Html.ValidationMessageFor(model => model.report.SearchNotes)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.report.SortAddedBy, new { @class = "control-label col-md-9" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.report.SortAddedBy)
+                        @Html.ValidationMessageFor(model => model.report.SortAddedBy)
+                    </div>
+                </div>*@
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/reports")
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+

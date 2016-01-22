@@ -1,0 +1,84 @@
+﻿@model CommunityHealth.Models.ViewModels.ActivityViewModel
+
+@{
+    ViewBag.Title = "Event Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CommunityAction</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.BreifDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.BreifDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.AddedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.AddedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.Location.LocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.Location.LocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.communityAction.Program.ProgramID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.communityAction.Program.ProgramID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+@if (Model.communityAction.AddedBy!=User.Identity.Name && User.IsInRole(@"LAVA\CommunityEventAdmin"))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.communityAction.ActionID })
+}|
+    @Html.ActionLink("Back to List", "Index")
+</p>

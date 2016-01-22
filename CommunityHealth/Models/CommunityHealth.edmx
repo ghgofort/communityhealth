@@ -1,0 +1,1519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CommunityProgramsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunityAction">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="BreifDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Duration" Type="float" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="ProgramID" Type="int" />
+          <Property Name="SubLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SubProgram" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionDepartmentAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+          <Property Name="SubDepartment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="JunctionPopulationAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopulationID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportDepartment">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportLocation">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportPopulation">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopulationID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportProgram">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportRole">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportType">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionRoleAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JunctionTypeAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+          <Property Name="Participants" Type="int" Nullable="false" />
+          <Property Name="subType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SearchValue" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortByDate" Type="bit" Nullable="false" />
+          <Property Name="BeginReportDate" Type="date" />
+          <Property Name="EndReportDate" Type="date" />
+          <Property Name="SearchBreifDescription" Type="bit" Nullable="false" />
+          <Property Name="SortByDuration" Type="bit" Nullable="false" />
+          <Property Name="LowDuration" Type="float" />
+          <Property Name="HighDuration" Type="float" />
+          <Property Name="SortByLocation" Type="bit" Nullable="false" />
+          <Property Name="SortByProgram" Type="bit" Nullable="false" />
+          <Property Name="SortByDepartment" Type="bit" Nullable="false" />
+          <Property Name="SortByPopulation" Type="bit" Nullable="false" />
+          <Property Name="SortByRole" Type="bit" Nullable="false" />
+          <Property Name="SortByType" Type="bit" Nullable="false" />
+          <Property Name="SearchDepartment" Type="bit" Nullable="false" />
+          <Property Name="SearchNotes" Type="bit" Nullable="false" />
+          <Property Name="SortAddedBy" Type="bit" Nullable="false" />
+          <Property Name="ReportBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReportDate" Type="date" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ReportName" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TargetPopulation">
+          <Key>
+            <PropertyRef Name="PopulationID" />
+          </Key>
+          <Property Name="PopulationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopulationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="RecordVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Action_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="CommunityAction">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Action_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="CommunityAction">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Department_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportDepartment" Type="Self.JunctionReportDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportDepartment">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Action">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionPopulationAction" Type="Self.JunctionPopulationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionPopulationAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Action_Role">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionRoleAction" Type="Self.JunctionRoleAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionRoleAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_ActionB">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionDepartmentAction" Type="Self.JunctionDepartmentAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionDepartmentAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_ActionC">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionTypeAction" Type="Self.JunctionTypeAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionTypeAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="JunctionDepartmentAction" Type="Self.JunctionDepartmentAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="JunctionDepartmentAction">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Population">
+          <End Role="TargetPopulation" Type="Self.TargetPopulation" Multiplicity="1" />
+          <End Role="JunctionPopulationAction" Type="Self.JunctionPopulationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Principal>
+            <Dependent Role="JunctionPopulationAction">
+              <PropertyRef Name="PopulationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="JunctionRoleAction" Type="Self.JunctionRoleAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="JunctionRoleAction">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Type">
+          <End Role="ActivityType" Type="Self.ActivityType" Multiplicity="1" />
+          <End Role="JunctionTypeAction" Type="Self.JunctionTypeAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="JunctionTypeAction">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Location_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportLocation" Type="Self.JunctionReportLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportLocation">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Population_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportPopulation" Type="Self.JunctionReportPopulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportPopulation">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Program_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportProgram" Type="Self.JunctionReportProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportProgram">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="JunctionReportDepartment" Type="Self.JunctionReportDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="JunctionReportDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="JunctionReportLocation" Type="Self.JunctionReportLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="JunctionReportLocation">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Population">
+          <End Role="TargetPopulation" Type="Self.TargetPopulation" Multiplicity="1" />
+          <End Role="JunctionReportPopulation" Type="Self.JunctionReportPopulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Principal>
+            <Dependent Role="JunctionReportPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="JunctionReportProgram" Type="Self.JunctionReportProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="JunctionReportProgram">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="JunctionReportRole" Type="Self.JunctionReportRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="JunctionReportRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Type">
+          <End Role="ActivityType" Type="Self.ActivityType" Multiplicity="1" />
+          <End Role="JunctionReportType" Type="Self.JunctionReportType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="JunctionReportType">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Role_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportRole" Type="Self.JunctionReportRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportRole">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Type_Report">
+          <End Role="Report" Type="Self.Report" Multiplicity="1" />
+          <End Role="JunctionReportType" Type="Self.JunctionReportType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportType">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="CommunityProgramsDBModelStoreContainer">
+          <EntitySet Name="ActivityType" EntityType="Self.ActivityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommunityAction" EntityType="Self.CommunityAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionDepartmentAction" EntityType="Self.JunctionDepartmentAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionPopulationAction" EntityType="Self.JunctionPopulationAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportDepartment" EntityType="Self.JunctionReportDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportLocation" EntityType="Self.JunctionReportLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportPopulation" EntityType="Self.JunctionReportPopulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportProgram" EntityType="Self.JunctionReportProgram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportRole" EntityType="Self.JunctionReportRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionReportType" EntityType="Self.JunctionReportType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionRoleAction" EntityType="Self.JunctionRoleAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JunctionTypeAction" EntityType="Self.JunctionTypeAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TargetPopulation" EntityType="Self.TargetPopulation" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Action_Location" Association="Self.fk_Action_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Action_Program" Association="Self.fk_Action_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Department_Report" Association="Self.fk_Department_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportDepartment" EntitySet="JunctionReportDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Action" Association="Self.fk_Junction_Action">
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+            <End Role="JunctionPopulationAction" EntitySet="JunctionPopulationAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Action_Role" Association="Self.fk_Junction_Action_Role">
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+            <End Role="JunctionRoleAction" EntitySet="JunctionRoleAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_ActionB" Association="Self.fk_Junction_ActionB">
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+            <End Role="JunctionDepartmentAction" EntitySet="JunctionDepartmentAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_ActionC" Association="Self.fk_Junction_ActionC">
+            <End Role="CommunityAction" EntitySet="CommunityAction" />
+            <End Role="JunctionTypeAction" EntitySet="JunctionTypeAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Department" Association="Self.fk_Junction_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="JunctionDepartmentAction" EntitySet="JunctionDepartmentAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Population" Association="Self.fk_Junction_Population">
+            <End Role="TargetPopulation" EntitySet="TargetPopulation" />
+            <End Role="JunctionPopulationAction" EntitySet="JunctionPopulationAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Role" Association="Self.fk_Junction_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="JunctionRoleAction" EntitySet="JunctionRoleAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Type" Association="Self.fk_Junction_Type">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="JunctionTypeAction" EntitySet="JunctionTypeAction" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Location_Report" Association="Self.fk_Location_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportLocation" EntitySet="JunctionReportLocation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Population_Report" Association="Self.fk_Population_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportPopulation" EntitySet="JunctionReportPopulation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Program_Report" Association="Self.fk_Program_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportProgram" EntitySet="JunctionReportProgram" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Department" Association="Self.fk_Report_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="JunctionReportDepartment" EntitySet="JunctionReportDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Location" Association="Self.fk_Report_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="JunctionReportLocation" EntitySet="JunctionReportLocation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Population" Association="Self.fk_Report_Population">
+            <End Role="TargetPopulation" EntitySet="TargetPopulation" />
+            <End Role="JunctionReportPopulation" EntitySet="JunctionReportPopulation" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Program" Association="Self.fk_Report_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="JunctionReportProgram" EntitySet="JunctionReportProgram" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Role" Association="Self.fk_Report_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="JunctionReportRole" EntitySet="JunctionReportRole" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Type" Association="Self.fk_Report_Type">
+            <End Role="ActivityType" EntitySet="ActivityType" />
+            <End Role="JunctionReportType" EntitySet="JunctionReportType" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Role_Report" Association="Self.fk_Role_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportRole" EntitySet="JunctionReportRole" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Type_Report" Association="Self.fk_Type_Report">
+            <End Role="Report" EntitySet="Report" />
+            <End Role="JunctionReportType" EntitySet="JunctionReportType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommunityProgramsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActivityType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JunctionTypeActions" Relationship="Self.fk_Junction_Type" FromRole="ActivityType" ToRole="JunctionTypeAction" />
+          <NavigationProperty Name="JunctionReportTypes" Relationship="CommunityProgramsDBModel.fk_Report_Type" FromRole="ActivityType" ToRole="JunctionReportType" />
+        </EntityType>
+        <EntityType Name="CommunityAction">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="BreifDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="Double" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="ProgramID" Type="Int32" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Location" Relationship="Self.fk_Action_Location" FromRole="CommunityAction" ToRole="Location" />
+          <NavigationProperty Name="Program" Relationship="Self.fk_Action_Program" FromRole="CommunityAction" ToRole="Program" />
+          <NavigationProperty Name="JunctionPopulationActions" Relationship="Self.fk_Junction_Action" FromRole="CommunityAction" ToRole="JunctionPopulationAction" />
+          <NavigationProperty Name="JunctionRoleActions" Relationship="Self.fk_Junction_Action_Role" FromRole="CommunityAction" ToRole="JunctionRoleAction" />
+          <NavigationProperty Name="JunctionDepartmentActions" Relationship="Self.fk_Junction_ActionB" FromRole="CommunityAction" ToRole="JunctionDepartmentAction" />
+          <NavigationProperty Name="JunctionTypeActions" Relationship="Self.fk_Junction_ActionC" FromRole="CommunityAction" ToRole="JunctionTypeAction" />
+          <Property Name="SubProgram" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JunctionDepartmentActions" Relationship="Self.fk_Junction_Department" FromRole="Department" ToRole="JunctionDepartmentAction" />
+          <NavigationProperty Name="JunctionReportDepartments" Relationship="CommunityProgramsDBModel.fk_Report_Department" FromRole="Department" ToRole="JunctionReportDepartment" />
+        </EntityType>
+        <EntityType Name="JunctionDepartmentAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <Property Name="SubDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CommunityAction" Relationship="Self.fk_Junction_ActionB" FromRole="JunctionDepartmentAction" ToRole="CommunityAction" />
+          <NavigationProperty Name="Department" Relationship="Self.fk_Junction_Department" FromRole="JunctionDepartmentAction" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="JunctionPopulationAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopulationID" Type="Int32" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CommunityAction" Relationship="Self.fk_Junction_Action" FromRole="JunctionPopulationAction" ToRole="CommunityAction" />
+          <NavigationProperty Name="TargetPopulation" Relationship="Self.fk_Junction_Population" FromRole="JunctionPopulationAction" ToRole="TargetPopulation" />
+        </EntityType>
+        <EntityType Name="JunctionRoleAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CommunityAction" Relationship="Self.fk_Junction_Action_Role" FromRole="JunctionRoleAction" ToRole="CommunityAction" />
+          <NavigationProperty Name="Role" Relationship="Self.fk_Junction_Role" FromRole="JunctionRoleAction" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="JunctionTypeAction">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="ActionID" Type="Int32" Nullable="false" />
+          <Property Name="Participants" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActivityType" Relationship="Self.fk_Junction_Type" FromRole="JunctionTypeAction" ToRole="ActivityType" />
+          <NavigationProperty Name="CommunityAction" Relationship="Self.fk_Junction_ActionC" FromRole="JunctionTypeAction" ToRole="CommunityAction" />
+          <Property Name="subType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="CommunityActions" Relationship="Self.fk_Action_Location" FromRole="Location" ToRole="CommunityAction" />
+          <NavigationProperty Name="JunctionReportLocations" Relationship="CommunityProgramsDBModel.fk_Report_Location" FromRole="Location" ToRole="JunctionReportLocation" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="CommunityActions" Relationship="Self.fk_Action_Program" FromRole="Program" ToRole="CommunityAction" />
+          <NavigationProperty Name="JunctionReportPrograms" Relationship="CommunityProgramsDBModel.fk_Report_Program" FromRole="Program" ToRole="JunctionReportProgram" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JunctionRoleActions" Relationship="Self.fk_Junction_Role" FromRole="Role" ToRole="JunctionRoleAction" />
+          <NavigationProperty Name="JunctionReportRoles" Relationship="CommunityProgramsDBModel.fk_Report_Role" FromRole="Role" ToRole="JunctionReportRole" />
+        </EntityType>
+        <EntityType Name="TargetPopulation">
+          <Key>
+            <PropertyRef Name="PopulationID" />
+          </Key>
+          <Property Name="PopulationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopulationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="RecordVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JunctionPopulationActions" Relationship="Self.fk_Junction_Population" FromRole="TargetPopulation" ToRole="JunctionPopulationAction" />
+          <NavigationProperty Name="JunctionReportPopulations" Relationship="CommunityProgramsDBModel.fk_Report_Population" FromRole="TargetPopulation" ToRole="JunctionReportPopulation" />
+        </EntityType>
+        <Association Name="fk_Junction_Type">
+          <End Role="ActivityType" Type="Self.ActivityType" Multiplicity="1" />
+          <End Role="JunctionTypeAction" Type="Self.JunctionTypeAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="JunctionTypeAction">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Action_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="CommunityAction">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Action_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="CommunityAction">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Action">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionPopulationAction" Type="Self.JunctionPopulationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionPopulationAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Action_Role">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionRoleAction" Type="Self.JunctionRoleAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionRoleAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_ActionB">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionDepartmentAction" Type="Self.JunctionDepartmentAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionDepartmentAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_ActionC">
+          <End Role="CommunityAction" Type="Self.CommunityAction" Multiplicity="1" />
+          <End Role="JunctionTypeAction" Type="Self.JunctionTypeAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommunityAction">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="JunctionTypeAction">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="JunctionDepartmentAction" Type="Self.JunctionDepartmentAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="JunctionDepartmentAction">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Population">
+          <End Role="TargetPopulation" Type="Self.TargetPopulation" Multiplicity="1" />
+          <End Role="JunctionPopulationAction" Type="Self.JunctionPopulationAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Principal>
+            <Dependent Role="JunctionPopulationAction">
+              <PropertyRef Name="PopulationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Junction_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="JunctionRoleAction" Type="Self.JunctionRoleAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="JunctionRoleAction">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CommunityProgramsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivityTypes" EntityType="Self.ActivityType" />
+          <EntitySet Name="CommunityActions" EntityType="Self.CommunityAction" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="JunctionDepartmentActions" EntityType="Self.JunctionDepartmentAction" />
+          <EntitySet Name="JunctionPopulationActions" EntityType="Self.JunctionPopulationAction" />
+          <EntitySet Name="JunctionRoleActions" EntityType="Self.JunctionRoleAction" />
+          <EntitySet Name="JunctionTypeActions" EntityType="Self.JunctionTypeAction" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="TargetPopulations" EntityType="Self.TargetPopulation" />
+          <AssociationSet Name="fk_Junction_Type" Association="Self.fk_Junction_Type">
+            <End Role="ActivityType" EntitySet="ActivityTypes" />
+            <End Role="JunctionTypeAction" EntitySet="JunctionTypeActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Action_Location" Association="Self.fk_Action_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Action_Program" Association="Self.fk_Action_Program">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Action" Association="Self.fk_Junction_Action">
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+            <End Role="JunctionPopulationAction" EntitySet="JunctionPopulationActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Action_Role" Association="Self.fk_Junction_Action_Role">
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+            <End Role="JunctionRoleAction" EntitySet="JunctionRoleActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_ActionB" Association="Self.fk_Junction_ActionB">
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+            <End Role="JunctionDepartmentAction" EntitySet="JunctionDepartmentActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_ActionC" Association="Self.fk_Junction_ActionC">
+            <End Role="CommunityAction" EntitySet="CommunityActions" />
+            <End Role="JunctionTypeAction" EntitySet="JunctionTypeActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Department" Association="Self.fk_Junction_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="JunctionDepartmentAction" EntitySet="JunctionDepartmentActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Population" Association="Self.fk_Junction_Population">
+            <End Role="TargetPopulation" EntitySet="TargetPopulations" />
+            <End Role="JunctionPopulationAction" EntitySet="JunctionPopulationActions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Junction_Role" Association="Self.fk_Junction_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="JunctionRoleAction" EntitySet="JunctionRoleActions" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CommunityProgramsDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CommunityProgramsDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="sysdiagrams" EntityType="CommunityProgramsDBModel.sysdiagram" />
+          <EntitySet Name="JunctionReportDepartments" EntityType="CommunityProgramsDBModel.JunctionReportDepartment" />
+          <EntitySet Name="JunctionReportLocations" EntityType="CommunityProgramsDBModel.JunctionReportLocation" />
+          <EntitySet Name="JunctionReportPopulations" EntityType="CommunityProgramsDBModel.JunctionReportPopulation" />
+          <EntitySet Name="JunctionReportPrograms" EntityType="CommunityProgramsDBModel.JunctionReportProgram" />
+          <EntitySet Name="JunctionReportRoles" EntityType="CommunityProgramsDBModel.JunctionReportRole" />
+          <EntitySet Name="JunctionReportTypes" EntityType="CommunityProgramsDBModel.JunctionReportType" />
+          <EntitySet Name="Reports" EntityType="CommunityProgramsDBModel.Report" />
+          <AssociationSet Name="fk_Report_Type" Association="CommunityProgramsDBModel.fk_Report_Type">
+            <End Role="ActivityType" EntitySet="ActivityTypes" />
+            <End Role="JunctionReportType" EntitySet="JunctionReportTypes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Department" Association="CommunityProgramsDBModel.fk_Report_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="JunctionReportDepartment" EntitySet="JunctionReportDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Department_Report" Association="CommunityProgramsDBModel.fk_Department_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportDepartment" EntitySet="JunctionReportDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Location_Report" Association="CommunityProgramsDBModel.fk_Location_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportLocation" EntitySet="JunctionReportLocations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Location" Association="CommunityProgramsDBModel.fk_Report_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="JunctionReportLocation" EntitySet="JunctionReportLocations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Population_Report" Association="CommunityProgramsDBModel.fk_Population_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportPopulation" EntitySet="JunctionReportPopulations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Population" Association="CommunityProgramsDBModel.fk_Report_Population">
+            <End Role="TargetPopulation" EntitySet="TargetPopulations" />
+            <End Role="JunctionReportPopulation" EntitySet="JunctionReportPopulations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Program_Report" Association="CommunityProgramsDBModel.fk_Program_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportProgram" EntitySet="JunctionReportPrograms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Program" Association="CommunityProgramsDBModel.fk_Report_Program">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="JunctionReportProgram" EntitySet="JunctionReportPrograms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Report_Role" Association="CommunityProgramsDBModel.fk_Report_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="JunctionReportRole" EntitySet="JunctionReportRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Role_Report" Association="CommunityProgramsDBModel.fk_Role_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportRole" EntitySet="JunctionReportRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Type_Report" Association="CommunityProgramsDBModel.fk_Type_Report">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="JunctionReportType" EntitySet="JunctionReportTypes" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="JunctionReportDepartment">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="CommunityProgramsDBModel.fk_Report_Department" FromRole="JunctionReportDepartment" ToRole="Department" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Department_Report" FromRole="JunctionReportDepartment" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="JunctionReportLocation">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Location_Report" FromRole="JunctionReportLocation" ToRole="Report" />
+          <NavigationProperty Name="Location" Relationship="CommunityProgramsDBModel.fk_Report_Location" FromRole="JunctionReportLocation" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="JunctionReportPopulation">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopulationID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Population_Report" FromRole="JunctionReportPopulation" ToRole="Report" />
+          <NavigationProperty Name="TargetPopulation" Relationship="CommunityProgramsDBModel.fk_Report_Population" FromRole="JunctionReportPopulation" ToRole="TargetPopulation" />
+        </EntityType>
+        <EntityType Name="JunctionReportProgram">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Program_Report" FromRole="JunctionReportProgram" ToRole="Report" />
+          <NavigationProperty Name="Program" Relationship="CommunityProgramsDBModel.fk_Report_Program" FromRole="JunctionReportProgram" ToRole="Program" />
+        </EntityType>
+        <EntityType Name="JunctionReportRole">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="CommunityProgramsDBModel.fk_Report_Role" FromRole="JunctionReportRole" ToRole="Role" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Role_Report" FromRole="JunctionReportRole" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="JunctionReportType">
+          <Key>
+            <PropertyRef Name="IndexID" />
+          </Key>
+          <Property Name="IndexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActivityType" Relationship="CommunityProgramsDBModel.fk_Report_Type" FromRole="JunctionReportType" ToRole="ActivityType" />
+          <NavigationProperty Name="Report" Relationship="CommunityProgramsDBModel.fk_Type_Report" FromRole="JunctionReportType" ToRole="Report" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SearchValue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SortByDate" Type="Boolean" Nullable="false" />
+          <Property Name="BeginReportDate" Type="DateTime" Precision="0" />
+          <Property Name="EndReportDate" Type="DateTime" Precision="0" />
+          <Property Name="SearchBreifDescription" Type="Boolean" Nullable="false" />
+          <Property Name="SortByDuration" Type="Boolean" Nullable="false" />
+          <Property Name="LowDuration" Type="Double" />
+          <Property Name="HighDuration" Type="Double" />
+          <Property Name="SortByLocation" Type="Boolean" Nullable="false" />
+          <Property Name="SortByProgram" Type="Boolean" Nullable="false" />
+          <Property Name="SortByDepartment" Type="Boolean" Nullable="false" />
+          <Property Name="SortByPopulation" Type="Boolean" Nullable="false" />
+          <Property Name="SortByRole" Type="Boolean" Nullable="false" />
+          <Property Name="SortByType" Type="Boolean" Nullable="false" />
+          <Property Name="SearchDepartment" Type="Boolean" Nullable="false" />
+          <Property Name="SearchNotes" Type="Boolean" Nullable="false" />
+          <Property Name="SortAddedBy" Type="Boolean" Nullable="false" />
+          <Property Name="ReportBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RecordVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="JunctionReportDepartments" Relationship="CommunityProgramsDBModel.fk_Department_Report" FromRole="Report" ToRole="JunctionReportDepartment" />
+          <NavigationProperty Name="JunctionReportLocations" Relationship="CommunityProgramsDBModel.fk_Location_Report" FromRole="Report" ToRole="JunctionReportLocation" />
+          <NavigationProperty Name="JunctionReportPopulations" Relationship="CommunityProgramsDBModel.fk_Population_Report" FromRole="Report" ToRole="JunctionReportPopulation" />
+          <NavigationProperty Name="JunctionReportPrograms" Relationship="CommunityProgramsDBModel.fk_Program_Report" FromRole="Report" ToRole="JunctionReportProgram" />
+          <NavigationProperty Name="JunctionReportRoles" Relationship="CommunityProgramsDBModel.fk_Role_Report" FromRole="Report" ToRole="JunctionReportRole" />
+          <NavigationProperty Name="JunctionReportTypes" Relationship="CommunityProgramsDBModel.fk_Type_Report" FromRole="Report" ToRole="JunctionReportType" />
+          <Property Name="ReportName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_Report_Type">
+          <End Type="CommunityProgramsDBModel.ActivityType" Role="ActivityType" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportType" Role="JunctionReportType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="JunctionReportType">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Department">
+          <End Type="CommunityProgramsDBModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportDepartment" Role="JunctionReportDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="JunctionReportDepartment">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Department_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportDepartment" Role="JunctionReportDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportDepartment">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Location_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportLocation" Role="JunctionReportLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportLocation">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Location">
+          <End Type="CommunityProgramsDBModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportLocation" Role="JunctionReportLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="JunctionReportLocation">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Population_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportPopulation" Role="JunctionReportPopulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportPopulation">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Population">
+          <End Type="CommunityProgramsDBModel.TargetPopulation" Role="TargetPopulation" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportPopulation" Role="JunctionReportPopulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Principal>
+            <Dependent Role="JunctionReportPopulation">
+              <PropertyRef Name="PopulationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Program_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportProgram" Role="JunctionReportProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportProgram">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Program">
+          <End Type="CommunityProgramsDBModel.Program" Role="Program" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportProgram" Role="JunctionReportProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="JunctionReportProgram">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Report_Role">
+          <End Type="CommunityProgramsDBModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportRole" Role="JunctionReportRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="JunctionReportRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Role_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportRole" Role="JunctionReportRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportRole">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Type_Report">
+          <End Type="CommunityProgramsDBModel.Report" Role="Report" Multiplicity="1" />
+          <End Type="CommunityProgramsDBModel.JunctionReportType" Role="JunctionReportType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Report">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="JunctionReportType">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CommunityProgramsDBModelStoreContainer" CdmEntityContainer="CommunityProgramsDBEntities">
+          <EntitySetMapping Name="ActivityTypes">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.ActivityType">
+              <MappingFragment StoreEntitySet="ActivityType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommunityActions">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.CommunityAction">
+              <MappingFragment StoreEntitySet="CommunityAction">
+                <ScalarProperty Name="SubProgram" ColumnName="SubProgram" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="BreifDescription" ColumnName="BreifDescription" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionDepartmentActions">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionDepartmentAction">
+              <MappingFragment StoreEntitySet="JunctionDepartmentAction">
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="SubDepartment" ColumnName="SubDepartment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionPopulationActions">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionPopulationAction">
+              <MappingFragment StoreEntitySet="JunctionPopulationAction">
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="PopulationID" ColumnName="PopulationID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionRoleActions">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionRoleAction">
+              <MappingFragment StoreEntitySet="JunctionRoleAction">
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionTypeActions">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionTypeAction">
+              <MappingFragment StoreEntitySet="JunctionTypeAction">
+                <ScalarProperty Name="subType" ColumnName="subType" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="Participants" ColumnName="Participants" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TargetPopulations">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.TargetPopulation">
+              <MappingFragment StoreEntitySet="TargetPopulation">
+                <ScalarProperty Name="PopulationID" ColumnName="PopulationID" />
+                <ScalarProperty Name="PopulationName" ColumnName="PopulationName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CommunityProgramsDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CommunityProgramsDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CommunityProgramsDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CommunityProgramsDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CommunityProgramsDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CommunityProgramsDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CommunityProgramsDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CommunityProgramsDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CommunityProgramsDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportDepartments">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportDepartment">
+              <MappingFragment StoreEntitySet="JunctionReportDepartment">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportLocations">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportLocation">
+              <MappingFragment StoreEntitySet="JunctionReportLocation">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportPopulations">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportPopulation">
+              <MappingFragment StoreEntitySet="JunctionReportPopulation">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="PopulationID" ColumnName="PopulationID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportPrograms">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportProgram">
+              <MappingFragment StoreEntitySet="JunctionReportProgram">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportRoles">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportRole">
+              <MappingFragment StoreEntitySet="JunctionReportRole">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JunctionReportTypes">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.JunctionReportType">
+              <MappingFragment StoreEntitySet="JunctionReportType">
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="IndexID" ColumnName="IndexID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="CommunityProgramsDBModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="RecordVersion" ColumnName="RecordVersion" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ReportBy" ColumnName="ReportBy" />
+                <ScalarProperty Name="SortAddedBy" ColumnName="SortAddedBy" />
+                <ScalarProperty Name="SearchNotes" ColumnName="SearchNotes" />
+                <ScalarProperty Name="SearchDepartment" ColumnName="SearchDepartment" />
+                <ScalarProperty Name="SortByType" ColumnName="SortByType" />
+                <ScalarProperty Name="SortByRole" ColumnName="SortByRole" />
+                <ScalarProperty Name="SortByPopulation" ColumnName="SortByPopulation" />
+                <ScalarProperty Name="SortByDepartment" ColumnName="SortByDepartment" />
+                <ScalarProperty Name="SortByProgram" ColumnName="SortByProgram" />
+                <ScalarProperty Name="SortByLocation" ColumnName="SortByLocation" />
+                <ScalarProperty Name="HighDuration" ColumnName="HighDuration" />
+                <ScalarProperty Name="LowDuration" ColumnName="LowDuration" />
+                <ScalarProperty Name="SortByDuration" ColumnName="SortByDuration" />
+                <ScalarProperty Name="SearchBreifDescription" ColumnName="SearchBreifDescription" />
+                <ScalarProperty Name="EndReportDate" ColumnName="EndReportDate" />
+                <ScalarProperty Name="BeginReportDate" ColumnName="BeginReportDate" />
+                <ScalarProperty Name="SortByDate" ColumnName="SortByDate" />
+                <ScalarProperty Name="SearchValue" ColumnName="SearchValue" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

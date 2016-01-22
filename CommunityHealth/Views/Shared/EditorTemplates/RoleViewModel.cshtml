@@ -1,0 +1,9 @@
+﻿@model CommunityHealth.Models.ViewModels.RoleViewModel
+
+
+    <div>
+        @Html.HiddenFor(model => model.RoleID)
+        @Html.HiddenFor(model => model.RoleName)
+        @Html.EditorFor(model => model.isSelected)
+        @Html.DisplayFor(model => model.RoleName)
+    </div>

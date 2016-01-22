@@ -1,0 +1,70 @@
+﻿@model CommunityHealth.Models.CommunityAction
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ActionID)
+    @Html.HiddenFor(model => model.RecordVersion)
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-4 required", id="lblSDate" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.StartDate)
+                @Html.ValidationMessageFor(model => model.StartDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-4", id="lblEDate" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.EndDate)
+                @Html.ValidationMessageFor(model => model.EndDate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BreifDescription, new { @class = "control-label col-md-4 required" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.BreifDescription)
+                @Html.ValidationMessageFor(model => model.BreifDescription)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationID, "Location", new { @class = "control-label col-md-4 required"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.LocationID, ViewBag.LocID as SelectList,"--SELECT--", new { htmlAttributes = new { @class = "control-form ddlLocation"} })
+            </div>
+        </div>
+
+        <div class="form-group divSubLocation">
+            @Html.LabelFor(model => model.SubLocation, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.SubLocation)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProgramID, "Program", new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.ProgramID, ViewBag.ProID as SelectList,"--SELECT--", new { htmlAttributes = new { @class = "control-form" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Notes)
+                @Html.ValidationMessageFor(model => model.Notes)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration, new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Duration)
+                @Html.ValidationMessageFor(model => model.Duration)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-2">
+        </div>
+    </div>
+</div>

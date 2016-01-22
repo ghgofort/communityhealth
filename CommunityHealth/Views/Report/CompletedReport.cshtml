@@ -1,0 +1,87 @@
+﻿
+@model IEnumerable<CommunityHealth.Models.ViewModels.ActivityViewModel>
+
+@{
+    ViewBag.Title = "CompletedReport";
+}
+
+<h2>CompletedReport</h2>
+
+<p>
+    @Html.ActionLink("Create New Report", "Create")
+</p>
+
+<table id="tblItems" class="table">
+    <tr>
+        <th>
+            @*Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })*@
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.BreifDescription)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Location.LocationName)</th>
+        <th>@Html.DisplayName("Department")</th>
+        <th>@Html.DisplayName("Activity Type")</th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.AddedBy)
+        </th>
+        <th>
+            @Html.DisplayName("Duration")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().communityAction.Program.ProgramName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="rowItems">
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.BreifDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Location.LocationName)
+            </td>
+            <td>
+                @foreach (var dep in item.junctionDepartmentActions)
+                {
+                    @Html.DisplayFor(modelItem => dep.Department.DepartmentName)
+                }
+            </td>
+            <td>
+                @foreach (var type in item.junctionTypeActions)
+                {
+                    @Html.DisplayFor(modelItem => type.ActivityType.TypeName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.AddedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.communityAction.Program.ProgramName)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<br />

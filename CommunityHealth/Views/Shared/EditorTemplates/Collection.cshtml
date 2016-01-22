@@ -1,0 +1,14 @@
+﻿@using HtmlHelpers.BeginCollectionItem
+
+<ul class="list-unstyled">
+    @foreach (object item in Model)
+    {
+        <li style="padding-bottom:.5em;">
+            @using (Html.BeginCollectionItem(Html.ViewData.TemplateInfo.HtmlFieldPrefix))
+            {
+                @Html.EditorFor(_ => item, null, "")
+            }
+
+        </li>
+    }
+</ul>

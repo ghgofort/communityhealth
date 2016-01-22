@@ -1,0 +1,83 @@
+﻿@model CommunityHealth.Models.ViewModels.ActivityViewModel
+
+@using CommunityHealth.Models.ViewModels
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Community Health Activities</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.communityAction)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Target Populations", new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.ListBoxFor(model => model.selectedPopulations, ViewBag.PopID as MultiSelectList, new { htmlAttributes = new { @class = "control-form" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.junctionTypeActions, new { @class = "control-label col-md-4 required" })
+                    <div class="col-md-8 editableList" id="divTypes">
+                        @Html.EditorFor(model => model.junctionTypeActions)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-4">
+                        @Ajax.ActionLink("+Add another activity type", "CreateNewType", new AjaxOptions
+                        {
+                            UpdateTargetId = "divTypes",
+                            InsertionMode = InsertionMode.InsertAfter,
+                            HttpMethod = "GET"
+                        })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.junctionDepartmentActions, new { @class = "control-label col-md-4 required" })
+                    <div class="col-md-8 editableList" id="divDepartment">
+                        @Html.EditorFor(model => model.junctionDepartmentActions)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        @Ajax.ActionLink("+Add another department", "CreateNewDepartment", new AjaxOptions { 
+                       UpdateTargetId = "divDepartment", 
+                       InsertionMode = InsertionMode.InsertAfter, 
+                       HttpMethod = "GET" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("North Country Roles", new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.roleViewModels)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

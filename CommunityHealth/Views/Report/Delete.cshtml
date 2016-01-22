@@ -1,0 +1,184 @@
+﻿@model CommunityHealth.Models.Report
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeginReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchBreifDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchBreifDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HighDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HighDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByDepartment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByDepartment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByPopulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByPopulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByRole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortByType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortByType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchDepartment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchDepartment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SortAddedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SortAddedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordVersion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

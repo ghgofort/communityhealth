@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="22a73ea109bc4aaa8b4c715f674fd7c0" Name="Diagram1">
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.ActivityType" Width="1.5" PointX="7.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.CommunityAction" Width="1.5" PointX="2.625" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.Department" Width="1.5" PointX="7.375" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionDepartmentAction" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionPopulationAction" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionRoleAction" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionTypeAction" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.Location" Width="1.5" PointX="7.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.Program" Width="1.5" PointX="7.375" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.Role" Width="1.5" PointX="7.375" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.TargetPopulation" Width="1.5" PointX="7.375" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Action_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Action_Program" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Action_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_ActionB" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_ActionC" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Population" ManuallyRouted="false" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Junction_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.sysdiagram" Width="1.5" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportDepartment" Width="1.5" PointX="9.5" PointY="6.5" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportLocation" Width="1.5" PointX="9.5" PointY="2.5" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportPopulation" Width="1.5" PointX="9.5" PointY="0.5" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportProgram" Width="1.5" PointX="9.375" PointY="10.625" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportRole" Width="1.5" PointX="9.5" PointY="8.625" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.JunctionReportType" Width="1.5" PointX="9.5" PointY="4.5" />
+        <EntityTypeShape EntityType="CommunityProgramsDBModel.Report" Width="1.5" PointX="12.375" PointY="2.875" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Type" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Department" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Department_Report" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Location_Report" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Location" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Population_Report" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Population" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Program_Report" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Program" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Report_Role" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Role_Report" />
+        <AssociationConnector Association="CommunityProgramsDBModel.fk_Type_Report" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
