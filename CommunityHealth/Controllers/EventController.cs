@@ -88,6 +88,7 @@ namespace CommunityHealth.Controllers
                     activityViewModels = activityViewModels.OrderByDescending(s => s.communityAction.Program.ProgramName !=null).ToList();
                     break;*/
                 default:
+                    activityViewModels = activityViewModels.OrderByDescending(s => s.communityAction.ActionID).ToList();
                     break;
             }
             int pageSize = 10;
@@ -347,6 +348,11 @@ namespace CommunityHealth.Controllers
                         ActionID = vmActivity.communityAction.ActionID
                     });
                 }
+
+                //***************** Make changes to the CommunityAction record ****************  
+                // Save the CommunityAction Record back to the db
+                db.Entry(ca).CurrentValues.SetValues(vmActivity.communityAction);
+
                 // Save the changes to the DB
                 try
                 {
