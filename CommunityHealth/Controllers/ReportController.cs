@@ -39,7 +39,7 @@ namespace CommunityHealth.Controllers
                 };
                 rbvmList.Add(rbvm);
             }
-            return View(rbvmList);
+            return View(rbvmList.OrderByDescending(m=>m.report.ReportID));
         }
 
         private List<ActivityReportModel> getModel(ReportBuilderViewModel rbvm)
@@ -366,6 +366,8 @@ namespace CommunityHealth.Controllers
             {
                 rbvm.report.BeginReportDate = rbvm.beginningReportDate;
                 rbvm.report.EndReportDate = rbvm.endReportDate;
+                db.Reports.Add(rbvm.report);
+                /*
                 int intHoldIndex = rbvm.report.ReportID;
                 //db.Reports.Remove(db.Reports.Where(m => m.ReportID == intHoldIndex).FirstOrDefault());
                 // Remove all of the old junctions out to recreate the item.
@@ -380,7 +382,7 @@ namespace CommunityHealth.Controllers
                 List<JunctionReportType> oldJRT = db.JunctionReportTypes.Where(m => m.ReportID == intHoldIndex).ToList();
                 db.JunctionReportTypes.RemoveRange(oldJRT);
                 List<JunctionReportPopulation> oldJRPo = db.JunctionReportPopulations.Where(m => m.ReportID == intHoldIndex).ToList();
-                db.JunctionReportPopulations.RemoveRange(oldJRPo);
+                db.JunctionReportPopulations.RemoveRange(oldJRPo);*/
 
                 // Check to see if any of the sort checkboxes are checked and write to junction tables 
                 if (rbvm.report.SortByDepartment)
