@@ -19,6 +19,12 @@
     @Html.TextBox("SearchKey", ViewBag.CurrentFilter as string)
     <input type="submit" value="Search" />
 }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
 <table id="tblItems" class="table">
     <tr>
         <th>

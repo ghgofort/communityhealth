@@ -16,11 +16,18 @@ using EPPlusEnumerable;
 
 namespace CommunityHealth.Controllers
 {
+    /// <summary>
+    /// Controller providing action methods to create and run reports, and list the existing reports records in the database
+    /// </summary>
     public class ReportController : Controller
     {
         private CommunityProgramsDBEntities db = new CommunityProgramsDBEntities();
 
         // GET: /Report/
+        /// <summary>
+        /// Provides a list of the reports objects
+        /// </summary>
+        /// <returns>Razor view poplated with a list of the reports in the database</returns>
         public async Task<ActionResult> Index()
         {
             List<ReportBuilderViewModel> rbvmList = new List<ReportBuilderViewModel>();
@@ -42,6 +49,11 @@ namespace CommunityHealth.Controllers
             return View(rbvmList.OrderByDescending(m=>m.report.ReportID));
         }
 
+        /// <summary>
+        /// creates the custom query from the values entered by the user, and returns the populated data model
+        /// </summary>
+        /// <param name="rbvm">ReportBuilderViewModel that holds the information about the specific query parameters</param>
+        /// <returns>List<ActivityReportModel holds list of queried data records</returns>
         private List<ActivityReportModel> getModel(ReportBuilderViewModel rbvm)
         {
             IQueryable<CommunityAction> query = db.CommunityActions;
@@ -99,26 +111,9 @@ namespace CommunityHealth.Controllers
                 }
                 query = query.Where(r => ids.Contains((int)r.ProgramID));
             }
-            // Sort by Program
-            if (rbvm.report.SortByProgram)
-            {
-                List<int> ids = new List<int>();
-                foreach (JunctionReportProgram jrp in rbvm.junctionReportPrograms)
-                {
-                    ids.Add(jrp.ProgramID);
-                }
-                query = query.Where(r => ids.Contains((int)r.ProgramID));
-            }
-            // Sort by Program
-            if (rbvm.report.SortByProgram)
-            {
-                List<int> ids = new List<int>();
-                foreach (JunctionReportProgram jrp in rbvm.junctionReportPrograms)
-                {
-                    ids.Add(jrp.ProgramID);
-                }
-                query = query.Where(r => ids.Contains((int)r.ProgramID));
-            }
+            
+            // -------   Add other sort blocks here   -------
+
             List<CommunityAction> queryList = query.ToList();
             List<ActivityReportModel> avm = new List<ActivityReportModel>();
             foreach(CommunityAction ca in queryList)
@@ -215,7 +210,13 @@ namespace CommunityHealth.Controllers
             }
             return avm;
         }
+
         // GET: /Report/Details/5
+        /// <summary>
+        /// Action method to run the selected report
+        /// </summary>
+        /// <param name="id">Id for the selected report to be run</param>
+        /// <returns>xls MS Excel file populated with the queried records</returns>
         public async Task<ActionResult> RunReport(int? id)
         {
             if (id == null)
@@ -252,6 +253,10 @@ namespace CommunityHealth.Controllers
         }
 
         // GET: /Report/Create
+        /// <summary>
+        /// Action method to populate the Create view for creating new reports
+        /// </summary>
+        /// <returns>View with the list of reports</returns>
         public ActionResult Create()
         {
             // Set the view bag variables for the drop downs
@@ -264,6 +269,11 @@ namespace CommunityHealth.Controllers
         }
 
         // POST: /Report/Create
+        /// <summary>
+        /// Action method to create the report in the database based upon the users inputs
+        /// </summary>
+        /// <param name="rbvm">ReportBuilderViewModel holds the users inputs specifying the query for the report</param>
+        /// <returns>ReportBuilderViewModel for populating the view</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ReportBuilderViewModel rbvm)
@@ -330,12 +340,18 @@ namespace CommunityHealth.Controllers
         }
 
         // GET: /Report/Edit/5
+        /// <summary>
+        /// Action method for displaying the report for editing the report parameters
+        /// </summary>
+        /// <param name="id">The id of the report in the database to edit</param>
+        /// <returns>ReportBuilderViewModel populated with the report parameters to be edited</returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            // Populate the model with the stored parameters to be edited
             ReportBuilderViewModel rbvm = new ReportBuilderViewModel
             {
                 report = await db.Reports.FindAsync(id),
@@ -356,8 +372,11 @@ namespace CommunityHealth.Controllers
         }
 
         // POST: /Report/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Edits the report stored in the database based upon the changes that the user made
+        /// </summary>
+        /// <param name="rbvm">ReportBuilderViewModel object that stores the parameters for the report query</param>
+        /// <returns>ReportBuilderViewModel that was modified by the user with the updated query parameters</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ReportBuilderViewModel rbvm)
@@ -368,6 +387,8 @@ namespace CommunityHealth.Controllers
                 rbvm.report.EndReportDate = rbvm.endReportDate;
                 db.Reports.Add(rbvm.report);
                 /*
+                 * This is not currently working code
+                 * 
                 int intHoldIndex = rbvm.report.ReportID;
                 //db.Reports.Remove(db.Reports.Where(m => m.ReportID == intHoldIndex).FirstOrDefault());
                 // Remove all of the old junctions out to recreate the item.

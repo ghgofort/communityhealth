@@ -159,7 +159,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ReportGenerator.cs" />
     <Compile Include="Models\ActivityType.cs">
       <DependentUpon>CommunityHealth.tt</DependentUpon>
     </Compile>
@@ -313,6 +312,7 @@
     <None Include="Properties\PublishProfiles\CommunityHealth.pubxml" />
     <Content Include="Scripts\CustomJS.js" />
     <Content Include="Scripts\DatePickerReady.js" />
+    <None Include="Properties\PublishProfiles\Remote_CommunityHealth.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -425,7 +425,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64326</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

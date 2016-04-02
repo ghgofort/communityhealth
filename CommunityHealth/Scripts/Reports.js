@@ -48,7 +48,7 @@ $('#chkFilterProgram').change(function () {
     }
     else {
         $("#divFilterPrograms").hide();
-        $("divPrograms").empty();
+        $("#divPrograms").empty();
     }
 });
 // Sort by Department checkbox
