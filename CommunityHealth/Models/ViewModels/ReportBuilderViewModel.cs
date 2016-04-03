@@ -28,6 +28,7 @@ namespace CommunityHealth.Models.ViewModels
         public virtual IList<JunctionReportLocation> junctionReportLocations { get; set; }
         [Display(Name = "Department")]
         public virtual IList<JunctionReportDepartment> junctionReportDepartments { get; set; }
+        [Display(Name="Target Population")]
         public virtual IList<JunctionReportPopulation> junctionReportPopulations { get; set; }
         [Display(Name = "NCHC Role")]
         public virtual IList<JunctionReportRole> junctionReportRoles { get; set; }
