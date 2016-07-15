@@ -41,7 +41,7 @@ namespace CommunityHealth.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<JunctionReportDepartment> JunctionReportDepartments { get; set; }
         public virtual DbSet<JunctionReportLocation> JunctionReportLocations { get; set; }
-        public virtual DbSet<JunctionReportPopulation> JunctionReportPopulations { get; set; }
+        public virtual DbSet<JunctionReportPopulation> fJunctionReportPopulations { get; set; }
         public virtual DbSet<JunctionReportProgram> JunctionReportPrograms { get; set; }
         public virtual DbSet<JunctionReportRole> JunctionReportRoles { get; set; }
         public virtual DbSet<JunctionReportType> JunctionReportTypes { get; set; }
